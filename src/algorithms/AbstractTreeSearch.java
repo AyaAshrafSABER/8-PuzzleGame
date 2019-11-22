@@ -1,6 +1,6 @@
 package algorithms;
 
-import javafx.util.Pair;
+//import javafx.util.Pair;
 import puzzle.PuzzleState;
 import puzzle.PuzzleStateNode;
 

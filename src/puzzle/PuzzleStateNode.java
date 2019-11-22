@@ -8,7 +8,7 @@ public class PuzzleStateNode implements Comparable<PuzzleStateNode>{
     public PuzzleState state;
     PuzzleStateNode parent;
     int depth;
-    int heuristic;
+    double heuristic;
 
     // These constructors are used for BFS and DFS
     public PuzzleStateNode(PuzzleState state) {
@@ -70,7 +70,7 @@ public class PuzzleStateNode implements Comparable<PuzzleStateNode>{
         return state.equals(goal);
     }
 
-    public Integer getCost() {
+    public Double getCost() {
         return depth + heuristic;
     }
 
