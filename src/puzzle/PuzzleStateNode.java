@@ -26,18 +26,18 @@ public class PuzzleStateNode implements Comparable<PuzzleStateNode>{
     }
 
     // These constructors are used for A* search
-    public PuzzleStateNode(PuzzleState state, int heuristic) {
+    public PuzzleStateNode(PuzzleState state, HeuristicEvaluator heuristicEvaluator) {
         this.state = state;
         this.parent = null;
         this.depth = 0;
-        this.heuristic = heuristic;
+        this.heuristic = heuristicEvaluator.evaluate(state);
     }
 
-    public PuzzleStateNode(PuzzleState state, PuzzleStateNode parent, int depth, int heuristic) {
+    public PuzzleStateNode(PuzzleState state, PuzzleStateNode parent, int depth, HeuristicEvaluator heuristicEvaluator) {
         this.state = state;
         this.parent = parent;
         this.depth = depth;
-        this.heuristic = heuristic;
+        this.heuristic = heuristicEvaluator.evaluate(state);
     }
 
     /*
