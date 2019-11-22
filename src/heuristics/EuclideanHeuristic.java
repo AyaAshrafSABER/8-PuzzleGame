@@ -2,7 +2,7 @@ package heuristics;
 
 import puzzle.PuzzleState;
 
-public class ManhattanHeuristic implements HeuristicEvaluator {
+public class EuclideanHeuristic implements HeuristicEvaluator {
 
     private int[][] coordinates = {{0, 0}, {0, 1}, {0, 2},
             {1, 0}, {1, 1}, {1, 2},
@@ -15,7 +15,7 @@ public class ManhattanHeuristic implements HeuristicEvaluator {
         int minimumCost = Integer.MAX_VALUE;
         int cost;
         for (int i = 0; i < currentState.length; i++) {
-            cost = (int)(Math.pow(Math.abs((i / 3) - coordinates[currentState[i]][0]), 2)
+            cost = (int)Math.sqrt(Math.pow(Math.abs((i / 3) - coordinates[currentState[i]][0]), 2)
                     + Math.pow(Math.abs((i % 3) - coordinates[currentState[i]][1]), 2));
             if (cost < minimumCost) {
                 minimumCost = cost;

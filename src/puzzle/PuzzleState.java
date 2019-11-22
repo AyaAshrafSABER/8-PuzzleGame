@@ -16,12 +16,12 @@ public class PuzzleState {
         ArrayList<Integer> freeTileAdjacentIndexes = freeTileAdjacentIndexes();
 
         for (int adjacentIndex : freeTileAdjacentIndexes) {
-            int[] neighbor_confguration = configuration.clone();
-            int temp = neighbor_confguration[adjacentIndex];
-            neighbor_confguration[adjacentIndex] = 0;
-            neighbor_confguration[freeTileIndex()] = temp;
+            int[] neighbor_configuration = configuration.clone();
+            int temp = neighbor_configuration[adjacentIndex];
+            neighbor_configuration[adjacentIndex] = 0;
+            neighbor_configuration[freeTileIndex()] = temp;
 
-            neighbors.add(new PuzzleState(neighbor_confguration));
+            neighbors.add(new PuzzleState(neighbor_configuration));
         }
         return neighbors;
     }
@@ -44,7 +44,7 @@ public class PuzzleState {
         ArrayList<Integer> neighborIndexes = new ArrayList();
         int freeTileIndex = freeTileIndex();
 
-        // List of potenial neighbors starting from right neighbor, bottom, left and top
+        // List of potential neighbors starting from right neighbor, bottom, left and top
         int potentialIndexes[] = {freeTileIndex + 1, freeTileIndex + 3, freeTileIndex - 1, freeTileIndex - 3};
 
         if (potentialIndexes[0] / 3 == freeTileIndex / 3) {
@@ -71,5 +71,9 @@ public class PuzzleState {
                 return i;
         }
         return -1;
+    }
+
+    public int[] getConfiguration() {
+        return this.configuration;
     }
 }

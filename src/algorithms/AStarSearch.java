@@ -11,14 +11,28 @@ public class AStarSearch extends AbstractTreeSearch {
 
     public AStarSearch(HeuristicEvaluator heuristicEvaluator) {
         super();
-        this.frontier = new PriorityQueue<>();
+        this.frontier = new PriorityQueue<PuzzleStateNode>();
         this.heuristicEvaluator = heuristicEvaluator;
     }
 
     @Override
     public boolean search(PuzzleState initialState, PuzzleState goalState) {
-        PuzzleStateNode p = new PuzzleStateNode(initialState);
-        // TODO
+        this.frontier.add(new PuzzleStateNode(initialState));
+        while (!this.frontier.isEmpty()) {
+            PuzzleStateNode state = (PuzzleStateNode) ((PriorityQueue)frontier).poll();
+            this.explored.add(state);
+            if (state.matches(goalState)) {
+                return true;
+            }
+            for (PuzzleStateNode neighbor: state.neighbors()) {
+                if (!explored.contains(neighbor) && !frontier.contains(neighbor)) {
+                    frontier.add(neighbor);
+                } else if (frontier.contains(neighbor)) {
+                    
+                }
+            }
+
+        }
         return false;
     }
 }
