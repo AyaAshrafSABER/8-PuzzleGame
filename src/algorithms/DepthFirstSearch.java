@@ -6,29 +6,27 @@ import puzzle.PuzzleStateNode;
 import java.util.ArrayDeque;
 import java.util.Stack;
 
-public class UninformedSearch extends AbstractTreeSearch {
-    public UninformedSearch (String algorithm){
+public class DepthFirstSearch extends AbstractTreeSearch {
+
+    public DepthFirstSearch() {
         super();
-        if (algorithm == "DFS"){
-            this.frontier = new Stack<>();
-        } else if (algorithm == "BFS"){
-            this.frontier = new ArrayDeque<>();
-        }
+        this.frontier = new Stack<>();
     }
+
     @Override
     public boolean search(PuzzleState initialState, PuzzleState goalState) {
         PuzzleStateNode root = new PuzzleStateNode(initialState);
         this.frontier.add(root);
         while(!this.frontier.isEmpty()){
-            PuzzleStateNode curr = this.frontier.iterator().next();
-            this.frontier.remove(curr);
+            PuzzleStateNode curr = (PuzzleStateNode)((Stack)frontier).pop();
             explored.add(curr);
+            curr.state.printConfiguration();
             if(curr.matches(goalState)){
                 return true;
             }
             for (PuzzleStateNode node: curr.neighbors()) {
                 if (!frontier.contains(node) && !explored.contains(node))
-                    frontier.add(node);
+                    ((Stack)frontier).push(node);
             }
         }
         return false;
