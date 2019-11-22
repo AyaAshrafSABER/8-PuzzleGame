@@ -61,7 +61,7 @@ public class PuzzleStateNode implements Comparable<PuzzleStateNode>{
         ArrayList<PuzzleStateNode> nodeNeighbors = new ArrayList<>();
 
         for (PuzzleState stateNeighbor : stateNeighbors) {
-            nodeNeighbors.add(new PuzzleStateNode(stateNeighbor, this, depth+1,  heuristicEvaluator.evaluate(stateNeighbor)));
+            nodeNeighbors.add(new PuzzleStateNode(stateNeighbor, this, depth+1,  heuristicEvaluator));
         }
         return nodeNeighbors;
     }
