@@ -26,8 +26,23 @@ public class PuzzleState {
         return neighbors;
     }
 
-    public boolean matches(PuzzleState goalState) {
-        return configuration.equals(goalState.configuration);
+    @Override
+    public boolean equals(Object o) {
+        if (o == this) {
+            return true;
+        }
+        if (!(o instanceof PuzzleState)) {
+            return false;
+        }
+
+        PuzzleState newPuzzleState = (PuzzleState) o;
+
+        return Arrays.equals(configuration, newPuzzleState.configuration);
+    }
+
+    @Override
+    public int hashCode() {
+        return Arrays.hashCode(configuration);
     }
 
     public void printConfiguration() {

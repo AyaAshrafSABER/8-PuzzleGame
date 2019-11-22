@@ -5,7 +5,7 @@ import heuristics.HeuristicEvaluator;
 import java.util.ArrayList;
 
 public class PuzzleStateNode implements Comparable<PuzzleStateNode>{
-    PuzzleState state;
+    public PuzzleState state;
     PuzzleStateNode parent;
     int depth;
     int heuristic;
@@ -67,11 +67,29 @@ public class PuzzleStateNode implements Comparable<PuzzleStateNode>{
     }
 
     public boolean matches(PuzzleState goal) {
-        return state.matches(goal);
+        return state.equals(goal);
     }
 
     public Integer getCost() {
         return depth + heuristic;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (o == this) {
+            return true;
+        }
+        if (!(o instanceof PuzzleStateNode)) {
+            return false;
+        }
+
+        PuzzleStateNode newPuzzleStateNode = (PuzzleStateNode) o;
+        return state.equals(newPuzzleStateNode.state);
+    }
+
+    @Override
+    public int hashCode() {
+        return state.hashCode();
     }
 
     @Override

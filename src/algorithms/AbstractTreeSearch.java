@@ -5,7 +5,6 @@ import puzzle.PuzzleState;
 import puzzle.PuzzleStateNode;
 
 import java.util.Collection;
-import java.util.HashMap;
 import java.util.HashSet;
 
 public abstract class AbstractTreeSearch {
