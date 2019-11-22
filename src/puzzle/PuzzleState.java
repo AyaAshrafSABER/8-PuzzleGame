@@ -68,10 +68,10 @@ public class PuzzleState {
         if (potentialIndexes[1] <= 8) {
             neighborIndexes.add(potentialIndexes[1]);
         }
-        if (potentialIndexes[2] / 3 == freeTileIndex / 3 && potentialIndexes[2] > 0) {
+        if (potentialIndexes[2] / 3 == freeTileIndex / 3 && potentialIndexes[2] >= 0) {
             neighborIndexes.add(potentialIndexes[2]);
         }
-        if (potentialIndexes[3] / 3 >= 0) {
+        if (potentialIndexes[3] / 3 >= 0 && potentialIndexes[3] >= 0) {
             neighborIndexes.add(potentialIndexes[3]);
         }
         return neighborIndexes;
