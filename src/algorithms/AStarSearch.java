@@ -10,6 +10,7 @@ public class AStarSearch extends AbstractTreeSearch {
     HeuristicEvaluator heuristicEvaluator;
 
     public AStarSearch(HeuristicEvaluator heuristicEvaluator) {
+        super();
         this.frontier = new PriorityQueue<>();
         this.heuristicEvaluator = heuristicEvaluator;
     }

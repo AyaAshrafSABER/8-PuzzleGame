@@ -7,6 +7,7 @@ import java.util.Stack;
 public class DepthFirstSearch extends AbstractTreeSearch {
 
     public DepthFirstSearch() {
+        super();
         this.frontier = new Stack<>();
     }
 
