@@ -9,18 +9,13 @@ public class EuclideanHeuristic implements HeuristicEvaluator {
             {2, 0}, {2, 1}, {2, 2}};
 
     @Override
-    public int evaluate(PuzzleState state) {
-        state.printConfiguration();
+    public double evaluate(PuzzleState state) {
         int[] currentState = state.getConfiguration();
-        int minimumCost = Integer.MAX_VALUE;
-        int cost;
+        double cost = 0;
         for (int i = 0; i < currentState.length; i++) {
-            cost = (int)Math.sqrt(Math.pow(Math.abs((i / 3) - coordinates[currentState[i]][0]), 2)
+            cost += Math.sqrt(Math.pow(Math.abs((i / 3) - coordinates[currentState[i]][0]), 2)
                     + Math.pow(Math.abs((i % 3) - coordinates[currentState[i]][1]), 2));
-            if (cost < minimumCost) {
-                minimumCost = cost;
-            }
         }
-        return minimumCost;
+        return cost;
     }
 }
