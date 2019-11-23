@@ -17,21 +17,26 @@ public class AStarSearch extends AbstractTreeSearch {
 
     @Override
     public boolean search(PuzzleState initialState, PuzzleState goalState) {
-//        System.out.println("Initial State:");
-//        initialState.printConfiguration();
+        System.out.println("Initial State:");
+        initialState.printConfiguration();
         this.frontier.add(new PuzzleStateNode(initialState, heuristicEvaluator));
+        long startTime = System.nanoTime();
         while (!this.frontier.isEmpty()) {
             PuzzleStateNode state = (PuzzleStateNode) ((PriorityQueue)frontier).poll();
-//            System.out.println("Current State, cost (f = h + g) = " + state.getCost());
-//            state.state.printConfiguration();
+            System.out.println("Current State: depth = " + state.getDepth() + ", cost (f = h + g) = " + state.getCost());
+            state.state.printConfiguration();
             this.explored.add(state);
             if (state.matches(goalState)) {
+                long endTime   = System.nanoTime();
+                long totalTime = (endTime - startTime)/1000000;
+                System.out.println(" ------------------------------- Depth of the solution path = " + state.getDepth());
                 printSolPath(state);
+                System.out.println("Running time = " + totalTime + " msec");
                 return true;
             }
             for (PuzzleStateNode neighbor: state.neighbors(heuristicEvaluator)) {
-//                System.out.println("Neighbor: , cost (f = h + g) = " + neighbor.getCost());
-//                neighbor.state.printConfiguration();
+                System.out.println("Neighbor: depth = " + neighbor.getDepth() + ", cost (f = h + g) = " + neighbor.getCost());
+                neighbor.state.printConfiguration();
                 if (!explored.contains(neighbor) && !frontier.contains(neighbor)) {
                     frontier.add(neighbor);
                 } else if (frontier.contains(neighbor)) {
@@ -49,6 +54,9 @@ public class AStarSearch extends AbstractTreeSearch {
             }
 
         }
+        long endTime   = System.nanoTime();
+        long totalTime = (endTime - startTime)/1000000;
+        System.out.println("Running time = " + totalTime + " msec");
         return false;
     }
 

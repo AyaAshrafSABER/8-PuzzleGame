@@ -96,4 +96,8 @@ public class PuzzleStateNode implements Comparable<PuzzleStateNode>{
     public int compareTo(PuzzleStateNode puzzleStateNode) {
         return getCost().compareTo(puzzleStateNode.getCost());
     }
+
+    public int getDepth() {
+        return this.depth;
+    }
 }
