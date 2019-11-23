@@ -12,9 +12,10 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
 
-<GridPane alignment="CENTER" hgap="10" prefHeight="329.0" prefWidth="445.0" vgap="10" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.171" fx:controller="sample.Controller">
+<GridPane alignment="CENTER" hgap="10" prefHeight="430.0" prefWidth="562.0" vgap="10" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.171" fx:controller="sample.Controller">
    <columnConstraints>
       <ColumnConstraints />
       <ColumnConstraints />
@@ -28,75 +29,74 @@
       <RowConstraints />
       <RowConstraints />
       <RowConstraints />
-      <RowConstraints />
-      <RowConstraints />
+      <RowConstraints maxHeight="0.0" minHeight="0.0" prefHeight="0.0" />
+      <RowConstraints maxHeight="0.0" minHeight="0.0" prefHeight="0.0" />
    </rowConstraints>
    <children>
       <VBox prefHeight="272.0" prefWidth="158.0" GridPane.rowIndex="5">
          <children>
-            <HBox prefHeight="100.0" prefWidth="200.0" />
             <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
                <children>
-                  <Button fx:id="index0" disable="true" mnemonicParsing="false" prefHeight="56.0" prefWidth="52.0" text="0">
+                  <TextField fx:id="index0" alignment="CENTER" prefHeight="39.0" prefWidth="49.0" text="0">
                      <font>
                         <Font name="System Bold" size="24.0" />
                      </font>
-                  </Button>
-                  <Button fx:id="index1" disable="true" mnemonicParsing="false" prefHeight="59.0" prefWidth="52.0" text="1">
+                  </TextField>
+                  <TextField fx:id="index1" alignment="CENTER" layoutX="73.0" layoutY="10.0" prefHeight="39.0" prefWidth="49.0" text="1">
                      <font>
                         <Font name="System Bold" size="24.0" />
                      </font>
-                  </Button>
-                  <Button fx:id="index2" disable="true" mnemonicParsing="false" prefHeight="56.0" prefWidth="52.0" text="2">
+                  </TextField>
+                  <TextField fx:id="index2" alignment="CENTER" layoutX="98.0" layoutY="10.0" prefHeight="39.0" prefWidth="49.0" text="2">
                      <font>
                         <Font name="System Bold" size="24.0" />
                      </font>
-                  </Button>
+                  </TextField>
                </children>
             </HBox>
             <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
                <children>
-                  <Button fx:id="index3" disable="true" mnemonicParsing="false" prefHeight="59.0" prefWidth="52.0" text="3">
+                  <TextField fx:id="index3" alignment="CENTER" prefHeight="39.0" prefWidth="49.0" text="3">
                      <font>
                         <Font name="System Bold" size="24.0" />
                      </font>
-                  </Button>
-                  <Button fx:id="index4" disable="true" mnemonicParsing="false" prefHeight="58.0" prefWidth="52.0" text="4">
+                  </TextField>
+                  <TextField fx:id="index4" alignment="CENTER" layoutX="73.0" layoutY="10.0" prefHeight="39.0" prefWidth="49.0" text="4">
                      <font>
                         <Font name="System Bold" size="24.0" />
                      </font>
-                  </Button>
-                  <Button fx:id="index5" disable="true" mnemonicParsing="false" prefHeight="57.0" prefWidth="52.0" text="5">
+                  </TextField>
+                  <TextField fx:id="index5" alignment="CENTER" layoutX="98.0" layoutY="10.0" prefHeight="39.0" prefWidth="49.0" text="5">
                      <font>
                         <Font name="System Bold" size="24.0" />
                      </font>
-                  </Button>
+                  </TextField>
                </children>
             </HBox>
             <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
                <children>
-                  <Button fx:id="index6" disable="true" mnemonicParsing="false" prefHeight="57.0" prefWidth="52.0" text="6">
+                  <TextField fx:id="index6" alignment="CENTER" prefHeight="39.0" prefWidth="49.0" text="6">
                      <font>
                         <Font name="System Bold" size="24.0" />
                      </font>
-                  </Button>
-                  <Button fx:id="index7" alignment="CENTER" contentDisplay="CENTER" disable="true" mnemonicParsing="false" prefHeight="57.0" prefWidth="52.0" text="7">
+                  </TextField>
+                  <TextField fx:id="index7" alignment="CENTER" layoutX="73.0" layoutY="10.0" prefHeight="39.0" prefWidth="49.0" text="7">
                      <font>
                         <Font name="System Bold" size="24.0" />
                      </font>
-                  </Button>
-                  <Button fx:id="index8" alignment="CENTER" disable="true" mnemonicParsing="false" prefHeight="62.0" prefWidth="52.0" text="8">
+                  </TextField>
+                  <TextField fx:id="index8" alignment="CENTER" layoutX="98.0" layoutY="10.0" prefHeight="39.0" prefWidth="49.0" text="8">
                      <font>
                         <Font name="System Bold" size="24.0" />
                      </font>
-                  </Button>
+                  </TextField>
                </children>
             </HBox>
             <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
                <children>
-                  <Button fx:id="back" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#prevState" prefHeight="36.0" prefWidth="74.0" text="Back" />
-                  <Region prefHeight="49.0" prefWidth="17.0" />
-                  <Button fx:id="next" alignment="CENTER" mnemonicParsing="false" onAction="#nextState" prefHeight="39.0" prefWidth="64.0" text="Forward" />
+                  <Button fx:id="back" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#prevState" prefHeight="25.0" prefWidth="55.0" text="Back" />
+                  <Region prefHeight="55.0" prefWidth="39.0" />
+                  <Button fx:id="next" alignment="CENTER" mnemonicParsing="false" onAction="#nextState" prefHeight="25.0" prefWidth="51.0" text="Next" />
                </children>
             </HBox>
          </children>
@@ -108,15 +108,25 @@
          <children>
             <RadioButton fx:id="dfs" mnemonicParsing="false" text="DFS" />
             <RadioButton fx:id="bfs" mnemonicParsing="false" text="BFS" />
-            <RadioButton fx:id="aStar" mnemonicParsing="false" text="A*" />
+            <RadioButton fx:id="aStarE" mnemonicParsing="false" text="A* Euclidean" />
+            <RadioButton fx:id="aStarM" layoutX="10.0" layoutY="44.0" mnemonicParsing="false" text="A* Manhattan" />
             <Region prefHeight="200.0" prefWidth="200.0" />
             <Label text="Cost" />
             <TextField fx:id="cost" />
             <Region prefHeight="200.0" prefWidth="200.0" />
             <Label text="Depth" />
             <TextField fx:id="depth" />
+            <Region layoutX="10.0" layoutY="78.0" prefHeight="200.0" prefWidth="200.0" />
+            <Label layoutX="10.0" layoutY="157.0" text="Time" />
+            <TextField fx:id="time" layoutX="10.0" layoutY="164.0" />
             <Region prefHeight="200.0" prefWidth="200.0" />
-            <Button fx:id="selectAlgorithm" mnemonicParsing="false" onAction="#runAlgorithm" text="Start" />
+            <HBox prefHeight="100.0" prefWidth="200.0">
+               <children>
+                  <Button fx:id="selectAlgorithm" mnemonicParsing="false" onAction="#runAlgorithm" text="Start" />
+                  <Region prefHeight="25.0" prefWidth="46.0" />
+                  <Button fx:id="reset" mnemonicParsing="false" onAction="#resetPuzzel" text="Reset " />
+               </children>
+            </HBox>
          </children>
          <opaqueInsets>
             <Insets left="20.0" />
@@ -125,8 +135,17 @@
             <Insets left="10.0" right="10.0" />
          </GridPane.margin>
       </VBox>
-      <Label text="Algorithm" GridPane.columnIndex="3" GridPane.rowIndex="2" />
+      <Label text="Algorithm" GridPane.columnIndex="3" GridPane.rowIndex="2">
+         <font>
+            <Font name="System Bold Italic" size="25.0" />
+         </font>
+      </Label>
       <Region prefHeight="15.0" prefWidth="184.0" GridPane.columnIndex="3" GridPane.rowIndex="1" />
       <Region prefHeight="20.0" prefWidth="195.0" />
+      <Text fill="#1e3386e5" fontSmoothingType="LCD" strokeType="OUTSIDE" strokeWidth="0.0" text="Puzzle State " GridPane.rowIndex="2">
+         <font>
+            <Font name="System Bold Italic" size="31.0" />
+         </font>
+      </Text>
    </children>
 </GridPane>

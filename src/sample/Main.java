@@ -15,22 +15,15 @@ public class Main extends Application {
     public void start(Stage primaryStage) throws Exception{
         Parent root = FXMLLoader.load(getClass().getResource("sample.fxml"));
         primaryStage.setTitle("8 Puzzle Solver");
-        primaryStage.setScene(new Scene(root, 300, 275));
+        primaryStage.setScene(new Scene(root, 450 , 400));
         primaryStage.show();
     }
 
 
     public static void main(String[] args) {
-        int[] configInt = new int[]{1,4,2,3,0,5,6,7,8};
-        int[] configfinal = new int[]{0,1,2,3,4,5,6,7,8};
 
         launch(args);
-        PuzzleState state = new PuzzleState(configInt);
-        PuzzleState fState = new PuzzleState(configfinal);
-        DepthFirstSearch s = new DepthFirstSearch();
-        BreadthFirstSearch b = new BreadthFirstSearch();
-        s.search(state,fState);
-        //b.search(state,fState);
+
 
     }
 }

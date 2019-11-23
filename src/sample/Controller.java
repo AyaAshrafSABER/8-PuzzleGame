@@ -3,6 +3,9 @@ import algorithms.AStarSearch;
 import algorithms.AbstractTreeSearch;
 import algorithms.BreadthFirstSearch;
 import algorithms.DepthFirstSearch;
+import heuristics.EuclideanHeuristic;
+import heuristics.HeuristicEvaluator;
+import heuristics.ManhattanHeuristic;
 import javafx.event.ActionEvent;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -17,27 +20,29 @@ import javafx.scene.text.Text;
 import puzzle.PuzzleState;
 import puzzle.PuzzleStateNode;
 
-import java.util.Collection;
-import java.util.Random;
-import java.util.ResourceBundle;
+import java.util.*;
 
 public class Controller implements Initializable{
+    final private PuzzleState sloved = new PuzzleState(new int []{0,1,2,3,4,5,6,7,8});
     final ToggleGroup algorithm = new ToggleGroup();
     private AbstractTreeSearch treeSearch;
     private PuzzleState init;
-    final private PuzzleState sloved = new PuzzleState(new int []{0,1,2,3,4,5,6,7,8});
-    private Collection<PuzzleStateNode>  path;
+    private ListIterator<PuzzleState> path;
 
     @FXML
     private TextField cost;
     @FXML
     private TextField depth;
     @FXML
+    private TextField time;
+    @FXML
     private RadioButton dfs;
     @FXML
     private RadioButton bfs;
     @FXML
-    private RadioButton aStar;
+    private RadioButton aStarE;
+    @FXML
+    private RadioButton aStarM;
     @FXML
     private Button selectAlgorithm;
     @FXML
@@ -45,87 +50,126 @@ public class Controller implements Initializable{
     @FXML
     private Button back;
     @FXML
-    private Button index0;
+    private TextField index0;
     @FXML
-    private Button index1;
+    private TextField index1;
     @FXML
-    private Button index2;
+    private TextField index2;
     @FXML
-    private Button index3;
+    private TextField index3;
     @FXML
-    private Button index4;
+    private TextField index4;
     @FXML
-    private Button index5;
+    private TextField index5;
     @FXML
-    private Button index6;
+    private TextField index6;
     @FXML
-    private Button index7;
+    private TextField index7;
     @FXML
-    private Button index8;
+    private TextField index8;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle)
     {
         setRadioButton();
-        init = randomState();
-        displayState(init);
     }
 
-    private void displayState(PuzzleState state) {
-        int[] config = state.getConfiguration();
-        index0.setText(config[0]+"");
-        index1.setText(config[1]+"");
-        index2.setText(config[2]+"");
-        index3.setText(config[3]+"");
-        index4.setText(config[4]+"");
-        index5.setText(config[5]+"");
-        index6.setText(config[6]+"");
-        index7.setText(config[7]+"");
-        index8.setText(config[8]+"");
 
-    }
-
-    private PuzzleState randomState() {
-        int[] configuration = new int[]{1,4,2,3,0,5,6,7,8};
-//        Random r = new Random();
-//        for(int i = 0; i < 9; i++) {
-//
-//        }
-        return new PuzzleState(configuration);
-    }
-
-    private void setRadioButton() {
+       private void setRadioButton() {
         dfs.setToggleGroup(algorithm);
         dfs.setSelected(true);
         bfs.setToggleGroup(algorithm);
-        aStar.setToggleGroup(algorithm);
+        aStarE.setToggleGroup(algorithm);
+        aStarM.setToggleGroup(algorithm);
+
+    }
+    private int[] getCongfigration(){
+        int[] config = new int[9];
+        config[0] = Integer.parseInt(index0.getText());
+        config[1] = Integer.parseInt(index1.getText());
+        config[2] = Integer.parseInt(index2.getText());
+        config[3] = Integer.parseInt(index3.getText());
+        config[4] = Integer.parseInt(index4.getText());
+        config[5] = Integer.parseInt(index5.getText());
+        config[6] = Integer.parseInt(index6.getText());
+        config[7] = Integer.parseInt(index7.getText());
+        config[8] = Integer.parseInt(index8.getText());
+        return config;
+    }
+    private void displayConfigration(int[]config){
+        index0.setText(config[0] + "");
+        index1.setText(config[1] + "");
+        index2.setText(config[2] + "");
+        index3.setText(config[3] + "");
+        index4.setText(config[4] + "");
+        index5.setText(config[5] + "");
+        index6.setText(config[6] + "");
+        index7.setText(config[7] + "");
+        index8.setText(config[8] + "");
+
+    }
+    @FXML
+    private void runAlgorithm(ActionEvent event) {
+        init= new PuzzleState(getCongfigration());
+        disablePuzzle();
+        if(dfs.isSelected()){
+            treeSearch = new DepthFirstSearch();
+        }else if (bfs.isSelected()){
+            treeSearch = new BreadthFirstSearch();
+        }else if (aStarE.isSelected()){
+            HeuristicEvaluator h = new EuclideanHeuristic();
+             treeSearch = new AStarSearch(h);
+        }else { //M
+            HeuristicEvaluator h = new ManhattanHeuristic();
+            treeSearch = new AStarSearch(h);
+        }
+        treeSearch.search(init,sloved);
+        path = (ListIterator<PuzzleState>) treeSearch.getPathToGoal().listIterator();
+        time.setText(treeSearch.runtimeMillis()+" " + "msec");
+        cost.setText(treeSearch.getGoal().getCost()+ "");
+        depth.setText(treeSearch.getSearchDepth()+"");
+
+    }
+
+    private void disablePuzzle() {
+        index0.setDisable(true);
+        index1.setDisable(true);
+        index2.setDisable(true);
+        index3.setDisable(true);
+        index4.setDisable(true);
+        index5.setDisable(true);
+        index6.setDisable(true);
+        index7.setDisable(true);
+        index8.setDisable(true);
     }
 
     @FXML
-    private void runAlgorithm(ActionEvent event) {
-        if(dfs.isSelected()){
-            treeSearch = new DepthFirstSearch();
-            treeSearch.search(init,sloved);
-            path = treeSearch.getFrontier();
-
-        }else if (bfs.isSelected()){
-            treeSearch = new BreadthFirstSearch();
-            treeSearch.search(init,sloved);
-            path = treeSearch.getFrontier();
-
-        }else if (aStar.isSelected()){
-           // treeSearch = new AStarSearch();
-             treeSearch.search(init,sloved);
-             path = treeSearch.getFrontier();
-
+    private void nextState(ActionEvent event) {
+        if(path.hasNext()){
+            displayConfigration(path.next().getConfiguration());
         }
     }
     @FXML
-    private void nextState(ActionEvent event) {
-
+    private void prevState(ActionEvent event) {
+        if(path.hasPrevious()){
+            displayConfigration(path.previous().getConfiguration());
+        }
     }
     @FXML
-    private void prevState(ActionEvent event) {
+    private void resetPuzzel(ActionEvent event){
+        EnablePuzzle();
 
+    }
+
+    private void EnablePuzzle() {
+        index0.setDisable(false);
+        index1.setDisable(false);
+        index2.setDisable(false);
+        index3.setDisable(false);
+        index4.setDisable(false);
+        index5.setDisable(false);
+        index6.setDisable(false);
+        index7.setDisable(false);
+        index8.setDisable(false);
     }
 }

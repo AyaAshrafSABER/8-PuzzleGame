@@ -50,5 +50,8 @@ public abstract class AbstractTreeSearch {
         }
         return path;
     }
+    public PuzzleStateNode getGoal(){
+        return goal;
+    }
 
 }
