@@ -16,17 +16,18 @@ public class BreadthFirstSearch extends AbstractTreeSearch {
     public boolean search(PuzzleState initialState, PuzzleState goalState) {
         startTime  = System.nanoTime();
         PuzzleStateNode root = new PuzzleStateNode(initialState);
+
         this.frontier.add(root);
         System.out.println("Expanded Nodes");
         while(!this.frontier.isEmpty()){
             PuzzleStateNode curr = (PuzzleStateNode)((ArrayDeque)this.frontier).pollFirst();
+            System.out.println("Cost" + curr.getCost());
             explored.add(curr);
             curr.state.printConfiguration();
             searchDepth = Math.max(searchDepth, curr.getDepth());   // Update maximum depth
             if(curr.matches(goalState)){
                 goal = curr;
                 endTime = System.nanoTime();
-
                 return true;
             }
             for (PuzzleStateNode node: curr.neighbors()) {

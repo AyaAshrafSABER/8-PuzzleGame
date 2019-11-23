@@ -7,7 +7,6 @@ import heuristics.EuclideanHeuristic;
 import heuristics.HeuristicEvaluator;
 import heuristics.ManhattanHeuristic;
 import javafx.event.ActionEvent;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import java.net.URL;
@@ -16,9 +15,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleGroup;
-import javafx.scene.text.Text;
 import puzzle.PuzzleState;
-import puzzle.PuzzleStateNode;
 
 import java.util.*;
 
