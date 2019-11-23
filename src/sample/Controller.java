@@ -74,39 +74,37 @@ public class Controller implements Initializable{
         setRadioButton();
     }
 
+    private TextField[] getTextFields() {
+        return new TextField[]{index0, index1, index2, index3, index4, index5, index6, index7, index8};
+    }
 
-       private void setRadioButton() {
+    private void setRadioButton() {
         dfs.setToggleGroup(algorithm);
         dfs.setSelected(true);
         bfs.setToggleGroup(algorithm);
         aStarE.setToggleGroup(algorithm);
         aStarM.setToggleGroup(algorithm);
-
     }
+
     private int[] getCongfigration(){
         int[] config = new int[9];
-        config[0] = Integer.parseInt(index0.getText());
-        config[1] = Integer.parseInt(index1.getText());
-        config[2] = Integer.parseInt(index2.getText());
-        config[3] = Integer.parseInt(index3.getText());
-        config[4] = Integer.parseInt(index4.getText());
-        config[5] = Integer.parseInt(index5.getText());
-        config[6] = Integer.parseInt(index6.getText());
-        config[7] = Integer.parseInt(index7.getText());
-        config[8] = Integer.parseInt(index8.getText());
+        TextField[] textFields = getTextFields();
+
+        for (int i = 0; i < 9; i++) {
+            config[i] = Integer.parseInt(textFields[i].getText());
+        }
         return config;
     }
     private void displayConfigration(int[]config){
-        index0.setText(config[0] + "");
-        index1.setText(config[1] + "");
-        index2.setText(config[2] + "");
-        index3.setText(config[3] + "");
-        index4.setText(config[4] + "");
-        index5.setText(config[5] + "");
-        index6.setText(config[6] + "");
-        index7.setText(config[7] + "");
-        index8.setText(config[8] + "");
-
+        TextField[] textFields = getTextFields();
+        for (int i = 0; i < 9; i++) {
+            textFields[i].setVisible(true);
+            textFields[i].setText(config[i] + "");
+            if (config[i] == 0) {
+                textFields[i].setVisible(false);
+                continue;
+            }
+        }
     }
     @FXML
     private void runAlgorithm(ActionEvent event) {
@@ -129,18 +127,14 @@ public class Controller implements Initializable{
         cost.setText(treeSearch.getGoal().getCost()+ "");
         depth.setText(treeSearch.getSearchDepth()+"");
 
+        displayConfigration(path.next().getConfiguration());
     }
 
     private void disablePuzzle() {
-        index0.setDisable(true);
-        index1.setDisable(true);
-        index2.setDisable(true);
-        index3.setDisable(true);
-        index4.setDisable(true);
-        index5.setDisable(true);
-        index6.setDisable(true);
-        index7.setDisable(true);
-        index8.setDisable(true);
+        TextField[] textFields = getTextFields();
+        for (int i = 0; i < 9; i++) {
+            textFields[i].setDisable(true);
+        }
     }
 
     @FXML
@@ -162,14 +156,10 @@ public class Controller implements Initializable{
     }
 
     private void EnablePuzzle() {
-        index0.setDisable(false);
-        index1.setDisable(false);
-        index2.setDisable(false);
-        index3.setDisable(false);
-        index4.setDisable(false);
-        index5.setDisable(false);
-        index6.setDisable(false);
-        index7.setDisable(false);
-        index8.setDisable(false);
+        TextField[] textFields = getTextFields();
+        for (int i = 0; i < 9; i++) {
+            textFields[i].setVisible(true);
+            textFields[i].setDisable(false);
+        }
     }
 }
