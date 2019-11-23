@@ -6,7 +6,7 @@ import java.util.ArrayList;
 
 public class PuzzleStateNode implements Comparable<PuzzleStateNode>{
     public PuzzleState state;
-    PuzzleStateNode parent;
+    public PuzzleStateNode parent;
     int depth;
     double heuristic;
 
