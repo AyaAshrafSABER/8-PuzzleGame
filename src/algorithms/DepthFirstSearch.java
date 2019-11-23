@@ -18,6 +18,7 @@ public class DepthFirstSearch extends AbstractTreeSearch {
         startTime = System.nanoTime();
         PuzzleStateNode root = new PuzzleStateNode(initialState);
         this.frontier.add(root);
+        System.out.println("Expanded Nodes");
         while(!this.frontier.isEmpty()){
             PuzzleStateNode curr = (PuzzleStateNode)((Stack)frontier).pop();
             explored.add(curr);

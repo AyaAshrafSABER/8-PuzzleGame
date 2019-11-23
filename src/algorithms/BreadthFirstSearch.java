@@ -17,6 +17,7 @@ public class BreadthFirstSearch extends AbstractTreeSearch {
         startTime  = System.nanoTime();
         PuzzleStateNode root = new PuzzleStateNode(initialState);
         this.frontier.add(root);
+        System.out.println("Expanded Nodes");
         while(!this.frontier.isEmpty()){
             PuzzleStateNode curr = (PuzzleStateNode)((ArrayDeque)this.frontier).pollFirst();
             explored.add(curr);

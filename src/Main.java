@@ -10,7 +10,8 @@ public class Main {
 //        458106732
 //        508421736
 //        int[] initialState = {4, 5, 8, 1, 0, 6, 7, 3, 2};
-        int[] initialState = {1, 0, 2, 3, 4, 5, 6, 7, 8};
+//        int[] initialState = {1, 0, 2, 3, 4, 5, 6, 7, 8};
+        int[] initialState = {1,2,5,3,4,0,6,7,8};
         int[] goalState = {0, 1, 2, 3, 4, 5, 6, 7, 8};
         System.out.println("************A**********");
         AStarSearch aStar = new AStarSearch(new EuclideanHeuristic());

@@ -45,7 +45,7 @@ public abstract class AbstractTreeSearch {
         ArrayList<PuzzleState> path = new ArrayList<>();
 
         while (node != null) {
-            path.add(node.state);
+            path.add(0, node.state);
             node = node.parent;
         }
         return path;

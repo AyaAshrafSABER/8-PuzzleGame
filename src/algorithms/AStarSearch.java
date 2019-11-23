@@ -21,6 +21,7 @@ public class AStarSearch extends AbstractTreeSearch {
         initialState.printConfiguration();
         this.frontier.add(new PuzzleStateNode(initialState, heuristicEvaluator));
         startTime = System.nanoTime();
+        System.out.println("Expanded Nodes");
         while (!this.frontier.isEmpty()) {
             PuzzleStateNode state = (PuzzleStateNode) ((PriorityQueue)frontier).poll();
             System.out.println("Current State: depth = " + state.getDepth() + ", cost (f = h + g) = " + state.getCost());
