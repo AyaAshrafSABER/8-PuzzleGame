@@ -6,7 +6,7 @@ import java.util.ArrayList;
 
 public class PuzzleStateNode implements Comparable<PuzzleStateNode>{
     public PuzzleState state;
-    PuzzleStateNode parent;
+    public PuzzleStateNode parent;
     int depth;
     double heuristic;
 
@@ -95,5 +95,9 @@ public class PuzzleStateNode implements Comparable<PuzzleStateNode>{
     @Override
     public int compareTo(PuzzleStateNode puzzleStateNode) {
         return getCost().compareTo(puzzleStateNode.getCost());
+    }
+
+    public int getDepth() {
+        return this.depth;
     }
 }
