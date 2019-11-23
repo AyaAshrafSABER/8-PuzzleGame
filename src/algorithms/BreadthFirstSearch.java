@@ -14,13 +14,18 @@ public class BreadthFirstSearch extends AbstractTreeSearch {
 
     @Override
     public boolean search(PuzzleState initialState, PuzzleState goalState) {
+        startTime  = System.nanoTime();
         PuzzleStateNode root = new PuzzleStateNode(initialState);
         this.frontier.add(root);
         while(!this.frontier.isEmpty()){
             PuzzleStateNode curr = (PuzzleStateNode)((ArrayDeque)this.frontier).pollFirst();
             explored.add(curr);
             curr.state.printConfiguration();
+            searchDepth = Math.max(searchDepth, curr.getDepth());   // Update maximum depth
             if(curr.matches(goalState)){
+                goal = curr;
+                endTime = System.nanoTime();
+
                 return true;
             }
             for (PuzzleStateNode node: curr.neighbors()) {
@@ -28,6 +33,7 @@ public class BreadthFirstSearch extends AbstractTreeSearch {
                     ((ArrayDeque)this.frontier).addLast(node);
             }
         }
+        endTime = System.nanoTime();
         return false;
     }
 

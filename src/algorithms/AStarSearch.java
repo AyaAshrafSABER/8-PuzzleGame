@@ -20,14 +20,16 @@ public class AStarSearch extends AbstractTreeSearch {
         System.out.println("Initial State:");
         initialState.printConfiguration();
         this.frontier.add(new PuzzleStateNode(initialState, heuristicEvaluator));
-        long startTime = System.nanoTime();
+        startTime = System.nanoTime();
         while (!this.frontier.isEmpty()) {
             PuzzleStateNode state = (PuzzleStateNode) ((PriorityQueue)frontier).poll();
             System.out.println("Current State: depth = " + state.getDepth() + ", cost (f = h + g) = " + state.getCost());
             state.state.printConfiguration();
             this.explored.add(state);
+            searchDepth = Math.max(searchDepth, state.getDepth());
             if (state.matches(goalState)) {
-                long endTime   = System.nanoTime();
+                goal = state;
+                endTime   = System.nanoTime();
                 long totalTime = (endTime - startTime)/1000000;
                 System.out.println(" ------------------------------- Depth of the solution path = " + state.getDepth());
                 printSolPath(state);
@@ -35,7 +37,6 @@ public class AStarSearch extends AbstractTreeSearch {
                 return true;
             }
             for (PuzzleStateNode neighbor: state.neighbors(heuristicEvaluator)) {
-                System.out.println("Neighbor: depth = " + neighbor.getDepth() + ", cost (f = h + g) = " + neighbor.getCost());
                 neighbor.state.printConfiguration();
                 if (!explored.contains(neighbor) && !frontier.contains(neighbor)) {
                     frontier.add(neighbor);
@@ -54,7 +55,7 @@ public class AStarSearch extends AbstractTreeSearch {
             }
 
         }
-        long endTime   = System.nanoTime();
+        endTime   = System.nanoTime();
         long totalTime = (endTime - startTime)/1000000;
         System.out.println("Running time = " + totalTime + " msec");
         return false;
